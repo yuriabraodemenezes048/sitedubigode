@@ -2,28 +2,26 @@
 
 import Link from "next/link";
 import { forwardRef } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type Variant = "solid" | "outline" | "ghost" | "light";
+type Variant = "primary" | "sun" | "whats" | "ink" | "outline";
 type Size = "md" | "lg";
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2 rounded-full font-sans font-semibold tracking-tight transition-all duration-500 ease-out-expo focus-visible:outline-offset-4 disabled:pointer-events-none disabled:opacity-50 select-none";
+  "group inline-flex items-center justify-center gap-2 rounded-full font-display font-semibold transition-transform duration-200 ease-pop active:scale-95 focus-visible:outline-offset-4 disabled:pointer-events-none disabled:opacity-60 select-none hover:-translate-y-0.5";
 
 const variants: Record<Variant, string> = {
-  solid:
-    "bg-ink text-paper hover:bg-flame hover:-translate-y-0.5 shadow-[0_10px_30px_-12px_rgba(17,17,16,0.6)]",
-  light:
-    "bg-paper text-ink hover:bg-flame hover:text-paper hover:-translate-y-0.5",
-  outline:
-    "border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-paper",
-  ghost: "text-ink hover:text-flame",
+  primary: "bg-tangerine text-paper shadow-[0_10px_0_-2px_#c9500f] hover:shadow-[0_12px_0_-2px_#c9500f]",
+  sun: "bg-sun text-ink shadow-[0_10px_0_-2px_#d99a12] hover:shadow-[0_12px_0_-2px_#d99a12]",
+  whats: "bg-[#25D366] text-white shadow-[0_10px_0_-2px_#1a9e4b] hover:shadow-[0_12px_0_-2px_#1a9e4b]",
+  ink: "bg-ink text-paper hover:bg-graphite",
+  outline: "border-[2.5px] border-ink text-ink hover:bg-ink hover:text-paper",
 };
 
 const sizes: Record<Size, string> = {
-  md: "h-11 px-6 text-sm",
-  lg: "h-14 px-8 text-[0.95rem]",
+  md: "h-12 px-6 text-[0.95rem]",
+  lg: "h-14 px-8 text-base sm:h-16 sm:px-10 sm:text-lg",
 };
 
 type CommonProps = {
@@ -36,7 +34,7 @@ type CommonProps = {
 
 export function Button({
   href,
-  variant = "solid",
+  variant = "primary",
   size = "md",
   arrow = false,
   className,
@@ -49,11 +47,11 @@ export function Button({
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   const content = (
     <>
-      <span className="relative z-10">{children}</span>
+      <span>{children}</span>
       {arrow && (
-        <ArrowUpRight
-          className="relative z-10 h-4 w-4 transition-transform duration-500 ease-out-expo group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          strokeWidth={2.2}
+        <ArrowRight
+          className="h-5 w-5 transition-transform duration-200 ease-pop group-hover:translate-x-1"
+          strokeWidth={2.5}
         />
       )}
     </>
@@ -63,13 +61,7 @@ export function Button({
 
   if (external) {
     return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cls}
-        {...props}
-      >
+      <a href={href} target="_blank" rel="noopener noreferrer" className={cls} {...props}>
         {content}
       </a>
     );
@@ -86,7 +78,7 @@ export const ButtonTag = forwardRef<
   HTMLButtonElement,
   CommonProps & React.ButtonHTMLAttributes<HTMLButtonElement>
 >(function ButtonTag(
-  { variant = "solid", size = "md", arrow = false, className, children, ...props },
+  { variant = "primary", size = "md", arrow = false, className, children, ...props },
   ref,
 ) {
   return (
@@ -95,11 +87,11 @@ export const ButtonTag = forwardRef<
       className={cn(base, variants[variant], sizes[size], className)}
       {...props}
     >
-      <span className="relative z-10">{children}</span>
+      <span>{children}</span>
       {arrow && (
-        <ArrowUpRight
-          className="relative z-10 h-4 w-4 transition-transform duration-500 ease-out-expo group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          strokeWidth={2.2}
+        <ArrowRight
+          className="h-5 w-5 transition-transform duration-200 ease-pop group-hover:translate-x-1"
+          strokeWidth={2.5}
         />
       )}
     </button>

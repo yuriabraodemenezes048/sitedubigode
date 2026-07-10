@@ -1,29 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Fraunces } from "next/font/google";
+import { Fredoka, Nunito } from "next/font/google";
 import { site } from "@/lib/site";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CookieBanner } from "@/components/layout/cookie-banner";
+import { WhatsappFab } from "@/components/layout/whatsapp-fab";
 import "./globals.css";
 
-const archivo = Archivo({
+const fredoka = Fredoka({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-archivo",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-fredoka",
+  weight: ["400", "500", "600", "700"],
 });
 
-const fraunces = Fraunces({
+const nunito = Nunito({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-fraunces",
-  style: ["normal", "italic"],
-  axes: ["opsz", "SOFT", "WONK"],
+  variable: "--font-nunito",
+  weight: ["400", "600", "700", "800", "900"],
 });
 
 export const viewport: Viewport = {
-  themeColor: "#111110",
+  themeColor: "#FFC02E",
   width: "device-width",
   initialScale: 1,
   colorScheme: "light",
@@ -38,7 +38,7 @@ const baseUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: `${site.name} — Open bar autoral para eventos inesquecíveis`,
+    default: `${site.name} — Drinks que transformam qualquer rolê`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -118,7 +118,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${archivo.variable} ${fraunces.variable}`}>
+    <html lang="pt-BR" className={`${fredoka.variable} ${nunito.variable}`}>
       <body>
         <script
           type="application/ld+json"
@@ -135,6 +135,7 @@ export default function RootLayout({
           <main id="conteudo">{children}</main>
           <Footer />
         </SmoothScroll>
+        <WhatsappFab />
         <CookieBanner />
       </body>
     </html>

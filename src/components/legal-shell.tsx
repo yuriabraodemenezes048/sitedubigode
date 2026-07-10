@@ -17,31 +17,31 @@ export function LegalShell({
   sections: LegalSection[];
 }) {
   return (
-    <div className="bg-paper">
-      <div className="shell max-w-3xl pb-24 pt-32 sm:pt-40">
+    <div className="bg-cream">
+      <div className="shell max-w-3xl pb-24 pt-32 sm:pt-36">
         <Link
           href="/"
-          className="link-underline inline-flex items-center gap-2 text-sm font-medium text-stone"
+          className="inline-flex items-center gap-2 font-display text-sm font-semibold text-graphite hover:text-tangerine"
         >
-          <ArrowLeft className="h-4 w-4" /> Voltar ao início
+          <ArrowLeft className="h-4 w-4" /> Voltar pro início
         </Link>
 
-        <p className="kicker mt-10">{kicker}</p>
-        <h1 className="mt-5 font-display text-fluid-xl font-extrabold leading-[0.98] tracking-tightest text-ink">
+        <span className="pill mt-8 bg-sun text-ink">{kicker}</span>
+        <h1 className="mt-5 font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">
           {title}
         </h1>
-        <p className="mt-4 text-sm text-stone">Última atualização: {updated}</p>
-        <p className="mt-8 text-base leading-relaxed text-graphite/80">{intro}</p>
+        <p className="mt-3 text-sm text-stone">Última atualização: {updated}</p>
+        <p className="mt-6 text-lg leading-relaxed text-graphite">{intro}</p>
 
-        <div className="mt-12 space-y-10">
+        <div className="mt-10 space-y-8">
           {sections.map((s, i) => (
-            <section key={i}>
-              <h2 className="font-display text-xl font-bold tracking-tight text-ink">
+            <section key={i} className="rounded-3xl border-2 border-ink/10 bg-paper p-6 sm:p-7">
+              <h2 className="font-display text-xl font-bold text-ink">
                 {i + 1}. {s.title}
               </h2>
               <div className="mt-3 space-y-3">
                 {s.body.map((p, j) => (
-                  <p key={j} className="text-[0.95rem] leading-relaxed text-graphite/80">
+                  <p key={j} className="leading-relaxed text-graphite">
                     {p}
                   </p>
                 ))}

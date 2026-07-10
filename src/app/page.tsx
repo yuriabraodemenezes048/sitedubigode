@@ -1,8 +1,8 @@
 import { Hero } from "@/components/sections/hero";
 import { MarqueeStrip } from "@/components/sections/marquee-strip";
 import { Manifesto } from "@/components/sections/manifesto";
-import { DrinksShowcase } from "@/components/sections/drinks-showcase";
 import { Services } from "@/components/sections/services";
+import { DrinksShowcase } from "@/components/sections/drinks-showcase";
 import { Gallery } from "@/components/sections/gallery";
 import { Stats } from "@/components/sections/stats";
 import { Testimonials } from "@/components/sections/testimonials";
@@ -15,10 +15,10 @@ export default function HomePage() {
       <Hero />
       <MarqueeStrip />
       <Manifesto />
-      <DrinksShowcase />
       <Services />
-      <Stats />
+      <DrinksShowcase />
       <Gallery />
+      <Stats />
       <Testimonials />
       <Faq />
       <FinalCta />

@@ -4,21 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram } from "lucide-react";
 import { nav, site, whatsappUrl } from "@/lib/site";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 40));
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 30));
 
-  // Trava o scroll do body quando o menu mobile está aberto
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -28,44 +24,21 @@ export function Header() {
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out-expo",
-          scrolled ? "py-2.5" : "py-4",
-        )}
-      >
+      <header className="fixed inset-x-0 top-0 z-50 py-3">
         <div className="shell">
           <div
             className={cn(
-              "flex items-center justify-between rounded-full transition-all duration-500 ease-out-expo",
-              scrolled
-                ? "glass border border-ink/5 px-3 py-2 shadow-[0_12px_40px_-24px_rgba(17,17,16,0.5)]"
-                : "px-1 py-1",
+              "flex items-center justify-between rounded-full border-2 border-ink/10 bg-paper/90 px-2.5 py-2 backdrop-blur transition-shadow duration-300",
+              scrolled ? "shadow-card" : "shadow-none",
             )}
           >
             {/* Logo */}
-            <Link
-              href="/"
-              aria-label={`${site.name} — início`}
-              className="group flex items-center gap-3 pl-1"
-            >
-              <span className="relative block h-11 w-11 overflow-hidden rounded-full ring-1 ring-ink/10">
-                <Image
-                  src="/images/logo.jpg"
-                  alt=""
-                  fill
-                  sizes="44px"
-                  className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-110"
-                  priority
-                />
+            <Link href="/" aria-label={`${site.name} — início`} className="flex items-center gap-2.5 pl-1">
+              <span className="relative block h-10 w-10 overflow-hidden rounded-full ring-2 ring-sun">
+                <Image src="/images/logo.jpg" alt="" fill sizes="40px" className="object-cover" priority />
               </span>
-              <span className="hidden flex-col leading-none sm:flex">
-                <span className="font-display text-[0.95rem] font-extrabold tracking-tightest text-ink">
-                  Drinks du Bigode
-                </span>
-                <span className="font-sans text-[0.6rem] font-semibold uppercase tracking-[0.24em] text-stone">
-                  Open bar autoral
-                </span>
+              <span className="font-display text-base font-bold leading-none text-ink">
+                Drinks du Bigode
               </span>
             </Link>
 
@@ -75,97 +48,90 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-full px-4 py-2 text-sm font-medium text-graphite/80 transition-colors hover:text-ink"
+                  className="rounded-full px-4 py-2 font-display text-[0.95rem] font-medium text-graphite transition-colors hover:bg-sun/25 hover:text-ink"
                 >
                   {item.label}
                 </Link>
               ))}
             </nav>
 
-            {/* CTA + menu toggle */}
+            {/* CTAs */}
             <div className="flex items-center gap-2">
-              <Button
+              <Link
                 href="/orcamento"
-                size="md"
-                arrow
-                className="hidden sm:inline-flex"
+                className="hidden h-11 items-center rounded-full bg-tangerine px-5 font-display text-[0.95rem] font-semibold text-paper shadow-[0_6px_0_-1px_#c9500f] transition-transform hover:-translate-y-0.5 active:scale-95 sm:inline-flex"
               >
-                Solicitar orçamento
-              </Button>
+                Pedir orçamento
+              </Link>
               <button
                 onClick={() => setOpen(true)}
                 aria-label="Abrir menu"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:bg-ink hover:text-paper lg:hidden"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-ink text-paper lg:hidden"
               >
-                <Menu className="h-5 w-5" strokeWidth={2} />
+                <Menu className="h-5 w-5" strokeWidth={2.5} />
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Menu mobile — overlay tipo app nativo */}
+      {/* Menu mobile — colorido, tipo app */}
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[60] bg-ink text-paper grain lg:hidden"
-            initial={{ clipPath: "circle(0% at 100% 0%)" }}
-            animate={{ clipPath: "circle(150% at 100% 0%)" }}
-            exit={{ clipPath: "circle(0% at 100% 0%)" }}
-            transition={{ duration: 0.6, ease: EASE }}
+            className="fixed inset-0 z-[60] bg-sun lg:hidden"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
           >
-            <div className="flex h-full flex-col px-6 pb-10 pt-5">
+            <div className="flex h-full flex-col px-6 pb-8 pt-5">
               <div className="flex items-center justify-between">
-                <span className="font-serif text-lg italic text-paper/70">
-                  du Bigode
-                </span>
+                <span className="font-display text-xl font-bold text-ink">du Bigode 🍹</span>
                 <button
                   onClick={() => setOpen(false)}
                   aria-label="Fechar menu"
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-paper/20"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-ink text-paper"
                 >
-                  <X className="h-5 w-5" />
+                  <X className="h-5 w-5" strokeWidth={2.5} />
                 </button>
               </div>
 
-              <nav className="mt-auto flex flex-col gap-1" aria-label="Mobile">
-                {nav.map((item, i) => (
-                  <motion.div
+              <nav className="mt-8 flex flex-col gap-2" aria-label="Mobile">
+                {nav.map((item) => (
+                  <Link
                     key={item.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.15 + i * 0.06, ease: EASE, duration: 0.6 }}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-3xl bg-paper px-6 py-4 font-display text-2xl font-bold text-ink"
                   >
-                    <Link
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className="block border-b border-paper/10 py-4 font-display text-4xl font-extrabold tracking-tightest text-paper"
-                    >
-                      {item.label}
-                    </Link>
-                  </motion.div>
+                    {item.label}
+                  </Link>
                 ))}
               </nav>
 
-              <div className="mt-10 flex flex-col gap-3">
-                <Button
+              <div className="mt-auto flex flex-col gap-3">
+                <Link
                   href="/orcamento"
-                  variant="light"
-                  size="lg"
-                  arrow
                   onClick={() => setOpen(false)}
+                  className="flex h-14 items-center justify-center rounded-full bg-tangerine font-display text-lg font-semibold text-paper shadow-[0_8px_0_-2px_#c9500f]"
                 >
-                  Solicitar orçamento
-                </Button>
-                <Button
-                  href={whatsappUrl("Olá! Vim pelo site e quero um orçamento.")}
-                  external
-                  variant="outline"
-                  size="lg"
-                  className="border-paper/30 text-paper hover:bg-paper hover:text-ink"
+                  Pedir orçamento
+                </Link>
+                <a
+                  href={whatsappUrl("Oi! Vim pelo site e quero um orçamento 🍹")}
+                  className="flex h-14 items-center justify-center gap-2 rounded-full bg-[#25D366] font-display text-lg font-semibold text-white shadow-[0_8px_0_-2px_#1a9e4b]"
                 >
                   Chamar no WhatsApp
-                </Button>
+                </a>
+                <a
+                  href={site.contact.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-14 items-center justify-center gap-2 rounded-full border-[2.5px] border-ink font-display text-lg font-semibold text-ink"
+                >
+                  <Instagram className="h-5 w-5" /> Seguir no Instagram
+                </a>
               </div>
             </div>
           </motion.div>

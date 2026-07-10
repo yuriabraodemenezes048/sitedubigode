@@ -10,66 +10,72 @@ const config: Config = {
     container: {
       center: true,
       padding: { DEFAULT: "1.25rem", lg: "2rem" },
-      screens: { "2xl": "1440px" },
+      screens: { "2xl": "1320px" },
     },
     extend: {
       colors: {
-        // Base neutra — muito espaço em branco quente
-        sand: "#E9E1D4",
-        cream: "#F5F1EA",
-        paper: "#FBF9F5",
-        ink: "#111110",
-        graphite: "#26251F",
-        stone: "#8C877B",
-        // Acentos da marca (extraídos dos rótulos reais)
-        flame: "#C1352B", // LoveGin
-        tropical: "#15693B", // Tropicaipi / Caipi
-        ocean: "#2B6E8F",
-        sunset: "#E27D33",
-        gold: "#C4A24C",
+        // Base clara e quente — nada de preto de fundo
+        paper: "#FFFFFF",
+        cream: "#FFF7EA",
+        sand: "#FDEFD6",
+        // Texto (marrom-escuro quente, nunca preto puro)
+        ink: "#2A2018",
+        graphite: "#5B5044",
+        stone: "#9C8E7B",
+        // Paleta de verão vibrante
+        sun: "#FFC02E", // amarelo sol
+        tangerine: "#FF6A1A", // laranja
+        lime: "#18B85C", // verde tropical
+        sky: "#2FC0E8", // azul piscina
+        berry: "#EC3B2B", // vermelho (detalhes)
+        grape: "#8B5CF6",
+        // Aliases legados mapeados pra nova paleta (compatibilidade)
+        flame: "#EC3B2B",
+        tropical: "#18B85C",
+        sunset: "#FF6A1A",
+        gold: "#FFC02E",
+        ocean: "#2FC0E8",
       },
       fontFamily: {
-        display: ["var(--font-archivo)", "system-ui", "sans-serif"],
-        serif: ["var(--font-fraunces)", "Georgia", "serif"],
-        sans: ["var(--font-archivo)", "system-ui", "sans-serif"],
+        display: ["var(--font-fredoka)", "system-ui", "sans-serif"],
+        sans: ["var(--font-nunito)", "system-ui", "sans-serif"],
+        serif: ["var(--font-fredoka)", "system-ui", "sans-serif"],
       },
       fontSize: {
-        // Escala fluida para headlines gigantes com respiração
-        "fluid-sm": "clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem)",
-        "fluid-lg": "clamp(1.25rem, 1rem + 1vw, 1.75rem)",
-        "fluid-xl": "clamp(2rem, 1.4rem + 3vw, 3.75rem)",
-        "fluid-2xl": "clamp(2.75rem, 1.5rem + 6vw, 6.5rem)",
-        "fluid-3xl": "clamp(3.5rem, 1rem + 11vw, 11rem)",
+        "fluid-lg": "clamp(1.35rem, 1.1rem + 1vw, 1.9rem)",
+        "fluid-xl": "clamp(2.1rem, 1.5rem + 2.6vw, 3.6rem)",
+        "fluid-2xl": "clamp(2.8rem, 1.6rem + 5.5vw, 5.75rem)",
+        "fluid-3xl": "clamp(3.4rem, 1rem + 10vw, 9rem)",
       },
-      letterSpacing: {
-        tightest: "-0.045em",
+      borderRadius: {
+        "4xl": "2rem",
+        "5xl": "2.75rem",
       },
-      maxWidth: {
-        "8xl": "88rem",
+      boxShadow: {
+        pop: "0 14px 0 -6px rgba(42,32,24,0.12)",
+        card: "0 24px 60px -30px rgba(42,32,24,0.35)",
       },
       transitionTimingFunction: {
-        "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "in-out-quint": "cubic-bezier(0.83, 0, 0.17, 1)",
+        pop: "cubic-bezier(0.34, 1.56, 0.64, 1)",
       },
       keyframes: {
         marquee: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        wiggle: {
+          "0%,100%": { transform: "rotate(-2deg)" },
+          "50%": { transform: "rotate(2deg)" },
         },
-        shimmer: {
-          "100%": { transform: "translateX(100%)" },
+        floaty: {
+          "0%,100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
         },
       },
       animation: {
-        marquee: "marquee 38s linear infinite",
-        "marquee-slow": "marquee 60s linear infinite",
-      },
-      backdropBlur: {
-        xs: "2px",
+        marquee: "marquee 30s linear infinite",
+        "marquee-slow": "marquee 48s linear infinite",
+        floaty: "floaty 6s ease-in-out infinite",
       },
     },
   },

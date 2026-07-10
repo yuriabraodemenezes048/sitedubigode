@@ -3,32 +3,26 @@
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { stats } from "@/lib/site";
-import { Reveal } from "@/components/ui/reveal";
+import { cn } from "@/lib/utils";
 
-function Counter({
-  value,
-  decimals = 0,
-}: {
-  value: number;
-  decimals?: number;
-}) {
+const colors = ["bg-sun text-ink", "bg-tangerine text-paper", "bg-lime text-paper", "bg-sky text-paper"];
+
+function Counter({ value, decimals = 0 }: { value: number; decimals?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-20%" });
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setDisplay(value);
       return;
     }
-    const duration = 1600;
+    const duration = 1400;
     const start = performance.now();
     let raf: number;
     const tick = (now: number) => {
       const t = Math.min((now - start) / duration, 1);
-      // easeOutExpo
       const eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
       setDisplay(value * eased);
       if (t < 1) raf = requestAnimationFrame(tick);
@@ -49,22 +43,23 @@ function Counter({
 
 export function Stats() {
   return (
-    <section className="border-y border-ink/10 bg-cream py-20 sm:py-24">
+    <section className="bg-paper py-16 sm:py-20">
       <div className="shell">
-        <Reveal>
-          <p className="kicker mx-auto w-fit">Confiança em números</p>
-        </Reveal>
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.08} className="text-center">
-              <div className="font-display text-fluid-xl font-black tracking-tightest text-ink">
+            <div
+              key={s.label}
+              className={cn(
+                "flex flex-col items-center justify-center rounded-[1.5rem] px-4 py-8 text-center",
+                colors[i % colors.length],
+              )}
+            >
+              <div className="font-display text-4xl font-bold sm:text-5xl">
                 <Counter value={s.value} decimals={"decimals" in s ? s.decimals : 0} />
-                <span className="text-flame">{s.suffix}</span>
+                {s.suffix}
               </div>
-              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone sm:text-sm">
-                {s.label}
-              </p>
-            </Reveal>
+              <p className="mt-1.5 font-display text-sm font-semibold opacity-90">{s.label}</p>
+            </div>
           ))}
         </div>
       </div>

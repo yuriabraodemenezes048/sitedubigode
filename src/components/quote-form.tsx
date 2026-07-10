@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Loader2, PartyPopper } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import {
   quoteSchema,
   eventTypes,
@@ -13,8 +13,6 @@ import {
 } from "@/lib/schema";
 import { cn } from "@/lib/utils";
 import { whatsappUrl } from "@/lib/site";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function QuoteForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
@@ -54,26 +52,20 @@ export function QuoteForm() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: EASE }}
-        className="flex min-h-[420px] flex-col items-center justify-center rounded-3xl border border-ink/10 bg-cream p-10 text-center"
+        transition={{ duration: 0.4 }}
+        className="flex min-h-[420px] flex-col items-center justify-center rounded-[2rem] border-2 border-ink/10 bg-paper p-10 text-center"
       >
-        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-tropical/10 text-tropical">
-          <PartyPopper className="h-7 w-7" />
-        </span>
-        <h3 className="mt-6 font-display text-3xl font-extrabold tracking-tightest text-ink">
-          Recebido! Vamos brindar.
-        </h3>
-        <p className="mt-3 max-w-md text-graphite/75">
-          Seu pedido chegou até a gente. Em poucas horas você recebe uma proposta
-          sob medida no seu e-mail. Quer adiantar? Fale com a gente agora.
+        <span className="text-6xl">🎉</span>
+        <h3 className="mt-5 font-display text-3xl font-bold text-ink">Recebido! 🍹</h3>
+        <p className="mt-3 max-w-md text-graphite">
+          Seu pedido chegou pra gente. Já já a gente te responde. Quer adiantar?
+          Chama no WhatsApp!
         </p>
         <a
-          href={whatsappUrl("Acabei de solicitar um orçamento pelo site!")}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-8 py-4 text-sm font-semibold text-paper transition-colors hover:bg-flame"
+          href={whatsappUrl("Acabei de pedir um orçamento pelo site! 🍹")}
+          className="mt-7 flex h-14 items-center justify-center rounded-full bg-[#25D366] px-8 font-display text-lg font-semibold text-white shadow-[0_8px_0_-2px_#1a9e4b] transition-transform hover:-translate-y-0.5 active:scale-95"
         >
-          Adiantar pelo WhatsApp
+          Chamar no WhatsApp
         </a>
       </motion.div>
     );
@@ -83,26 +75,24 @@ export function QuoteForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="rounded-3xl border border-ink/10 bg-cream p-6 sm:p-9"
+      className="rounded-[2rem] border-2 border-ink/10 bg-paper p-6 sm:p-8"
     >
       {/* Tipo de evento */}
       <fieldset>
-        <legend className="text-sm font-semibold text-ink">
-          Que tipo de evento é? <span className="text-flame">*</span>
+        <legend className="font-display font-bold text-ink">
+          Qual é o rolê? <span className="text-berry">*</span>
         </legend>
         <div className="mt-3 flex flex-wrap gap-2">
           {eventTypes.map((t) => (
             <button
               key={t}
               type="button"
-              onClick={() =>
-                setValue("eventType", t, { shouldValidate: true, shouldTouch: true })
-              }
+              onClick={() => setValue("eventType", t, { shouldValidate: true, shouldTouch: true })}
               className={cn(
-                "rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300",
+                "rounded-full border-2 px-4 py-2.5 font-display text-sm font-semibold transition-colors",
                 eventType === t
-                  ? "border-ink bg-ink text-paper"
-                  : "border-ink/15 text-graphite/80 hover:border-ink/40",
+                  ? "border-tangerine bg-tangerine text-paper"
+                  : "border-ink/15 text-graphite hover:border-tangerine",
               )}
             >
               {t}
@@ -113,23 +103,21 @@ export function QuoteForm() {
       </fieldset>
 
       {/* Convidados */}
-      <fieldset className="mt-8">
-        <legend className="text-sm font-semibold text-ink">
-          Quantos convidados? <span className="text-flame">*</span>
+      <fieldset className="mt-7">
+        <legend className="font-display font-bold text-ink">
+          Quantas pessoas? <span className="text-berry">*</span>
         </legend>
         <div className="mt-3 flex flex-wrap gap-2">
           {guestRanges.map((g) => (
             <button
               key={g}
               type="button"
-              onClick={() =>
-                setValue("guests", g, { shouldValidate: true, shouldTouch: true })
-              }
+              onClick={() => setValue("guests", g, { shouldValidate: true, shouldTouch: true })}
               className={cn(
-                "rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300",
+                "rounded-full border-2 px-4 py-2.5 font-display text-sm font-semibold transition-colors",
                 guests === g
-                  ? "border-ink bg-ink text-paper"
-                  : "border-ink/15 text-graphite/80 hover:border-ink/40",
+                  ? "border-tangerine bg-tangerine text-paper"
+                  : "border-ink/15 text-graphite hover:border-tangerine",
               )}
             >
               {g}
@@ -140,62 +128,34 @@ export function QuoteForm() {
       </fieldset>
 
       {/* Dados de contato */}
-      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+      <div className="mt-7 grid gap-4 sm:grid-cols-2">
         <Field label="Seu nome" required error={errors.name?.message}>
-          <input
-            {...register("name")}
-            autoComplete="name"
-            placeholder="Como podemos te chamar?"
-            className={inputCls}
-          />
+          <input {...register("name")} autoComplete="name" placeholder="Como te chamam?" className={inputCls} />
         </Field>
         <Field label="E-mail" required error={errors.email?.message}>
-          <input
-            {...register("email")}
-            type="email"
-            autoComplete="email"
-            placeholder="voce@email.com"
-            className={inputCls}
-          />
+          <input {...register("email")} type="email" autoComplete="email" placeholder="voce@email.com" className={inputCls} />
         </Field>
-        <Field label="WhatsApp / Telefone" required error={errors.phone?.message}>
-          <input
-            {...register("phone")}
-            type="tel"
-            autoComplete="tel"
-            placeholder="(11) 99999-9999"
-            className={inputCls}
-          />
+        <Field label="WhatsApp" required error={errors.phone?.message}>
+          <input {...register("phone")} type="tel" autoComplete="tel" placeholder="(21) 99999-9999" className={inputCls} />
         </Field>
-        <Field label="Cidade do evento" required error={errors.city?.message}>
-          <input
-            {...register("city")}
-            autoComplete="address-level2"
-            placeholder="Rio de Janeiro, RJ"
-            className={inputCls}
-          />
+        <Field label="Cidade da festa" required error={errors.city?.message}>
+          <input {...register("city")} autoComplete="address-level2" placeholder="Rio de Janeiro, RJ" className={inputCls} />
         </Field>
         <Field label="Data (se já tiver)" error={errors.date?.message}>
-          <input
-            {...register("date")}
-            type="text"
-            placeholder="Ex.: 14/12/2026 ou ‘ainda escolhendo’"
-            className={inputCls}
-          />
+          <input {...register("date")} type="text" placeholder="Ex.: 14/12 ou ‘ainda vendo’" className={inputCls} />
         </Field>
-        <div className="sm:row-span-1" />
       </div>
 
-      <Field label="Conte um pouco do seu evento" error={errors.message?.message} className="mt-5">
+      <Field label="Conta um pouco da festa" error={errors.message?.message} className="mt-4">
         <textarea
           {...register("message")}
-          rows={4}
-          placeholder="Estilo da festa, drinks favoritos, o que não pode faltar..."
+          rows={3}
+          placeholder="Vibe do rolê, drinks favoritos, o que não pode faltar..."
           className={cn(inputCls, "resize-none")}
         />
       </Field>
 
-      {/* Honeypot — invisível para humanos */}
+      {/* Honeypot */}
       <div aria-hidden className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
         <label>
           Não preencha
@@ -204,55 +164,48 @@ export function QuoteForm() {
       </div>
 
       {/* Consentimento LGPD */}
-      <label className="mt-7 flex cursor-pointer items-start gap-3">
+      <label className="mt-6 flex cursor-pointer items-start gap-3">
         <input
           {...register("consent")}
           type="checkbox"
-          className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-ink/30 accent-flame"
+          className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded accent-tangerine"
         />
-        <span className="text-[0.82rem] leading-relaxed text-graphite/75">
-          Autorizo a Drinks du Bigode a usar meus dados para entrar em contato
-          sobre este orçamento, conforme a{" "}
-          <a href="/politica-de-privacidade" className="font-medium text-flame underline underline-offset-2">
+        <span className="text-sm leading-relaxed text-graphite">
+          Pode usar meus dados pra falar comigo sobre o orçamento, conforme a{" "}
+          <a href="/politica-de-privacidade" className="font-semibold text-tangerine underline">
             Política de Privacidade
           </a>
-          . <span className="text-flame">*</span>
+          . <span className="text-berry">*</span>
         </span>
       </label>
       <FieldError msg={errors.consent?.message} />
 
       {status === "error" && (
-        <p className="mt-4 rounded-xl bg-flame/10 px-4 py-3 text-sm text-flame">
-          Algo deu errado no envio. Tente novamente ou fale no WhatsApp.
+        <p className="mt-4 rounded-2xl bg-berry/10 px-4 py-3 text-sm font-semibold text-berry">
+          Deu ruim no envio 😅 Tenta de novo ou chama no WhatsApp.
         </p>
       )}
 
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-7 inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-ink px-8 text-[0.95rem] font-semibold text-paper transition-all duration-500 ease-out-expo hover:bg-flame disabled:opacity-70 sm:w-auto"
+        className="mt-6 flex h-16 w-full items-center justify-center gap-2 rounded-full bg-tangerine px-8 font-display text-xl font-semibold text-paper shadow-[0_9px_0_-2px_#c9500f] transition-transform hover:-translate-y-0.5 active:scale-95 disabled:opacity-70"
       >
-        <AnimatePresence mode="wait" initial={false}>
-          {status === "sending" ? (
-            <motion.span key="s" className="flex items-center gap-2">
-              <Loader2 className="h-4 w-4 animate-spin" /> Enviando...
-            </motion.span>
-          ) : (
-            <motion.span key="i" className="flex items-center gap-2">
-              Enviar pedido de orçamento <Check className="h-4 w-4" />
-            </motion.span>
-          )}
-        </AnimatePresence>
+        {status === "sending" ? (
+          <>
+            <Loader2 className="h-5 w-5 animate-spin" /> Enviando...
+          </>
+        ) : (
+          "Bora! Enviar pedido 🍹"
+        )}
       </button>
-      <p className="mt-4 text-xs text-stone">
-        Resposta em até algumas horas em dias úteis. Sem spam, prometido.
-      </p>
+      <p className="mt-3 text-center text-xs text-stone">Sem spam, prometido. 🤙</p>
     </form>
   );
 }
 
 const inputCls =
-  "w-full rounded-xl border border-ink/15 bg-paper px-4 py-3 text-[0.95rem] text-ink placeholder:text-stone/70 outline-none transition-colors focus:border-ink focus:ring-2 focus:ring-ink/10";
+  "w-full rounded-2xl border-2 border-ink/15 bg-cream px-4 py-3.5 text-[0.98rem] text-ink placeholder:text-stone outline-none transition-colors focus:border-tangerine";
 
 function Field({
   label,
@@ -269,8 +222,8 @@ function Field({
 }) {
   return (
     <label className={cn("block", className)}>
-      <span className="text-sm font-semibold text-ink">
-        {label} {required && <span className="text-flame">*</span>}
+      <span className="font-display text-sm font-bold text-ink">
+        {label} {required && <span className="text-berry">*</span>}
       </span>
       <span className="mt-2 block">{children}</span>
       <FieldError msg={error} />
@@ -286,7 +239,7 @@ function FieldError({ msg }: { msg?: string }) {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="mt-1.5 block text-xs font-medium text-flame"
+          className="mt-1.5 block text-xs font-semibold text-berry"
         >
           {msg}
         </motion.span>

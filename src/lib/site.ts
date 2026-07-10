@@ -7,9 +7,9 @@ export const site = {
   name: "Drinks du Bigode",
   shortName: "du Bigode",
   legalName: "Drinks du Bigode",
-  tagline: "Experiências líquidas para momentos inesquecíveis.",
+  tagline: "Drinks que transformam qualquer rolê.",
   description:
-    "Open bar autoral, coquetéis engarrafados e bartenders para casamentos, eventos corporativos e celebrações premium. Não servimos drinks — criamos experiências.",
+    "Open bar, coquetéis autorais e a galera mais animada pra fazer a bebida do seu casamento, festa ou evento no Rio. Bora brindar? 🍹",
   // Substitua pela URL de produção definitiva
   url: "https://drinksdubigode.com.br",
   locale: "pt-BR",
@@ -32,11 +32,10 @@ export const whatsappUrl = (message?: string) =>
   }`;
 
 export const nav = [
-  { label: "Manifesto", href: "/#manifesto" },
-  { label: "Drinks", href: "/#drinks" },
+  { label: "Quem somos", href: "/#manifesto" },
   { label: "Serviços", href: "/#servicos" },
+  { label: "Drinks", href: "/#drinks" },
   { label: "Galeria", href: "/#galeria" },
-  { label: "Depoimentos", href: "/#depoimentos" },
 ] as const;
 
 export type Drink = {
@@ -44,8 +43,9 @@ export type Drink = {
   name: string;
   spirit: string;
   notes: string;
+  emoji: string;
   description: string;
-  accent: string; // classe tailwind de cor
+  accent: string; // token de cor tailwind (sun, lime, berry, tangerine...)
   glass: string;
   poster: string;
 };
@@ -55,10 +55,11 @@ export const drinks: Drink[] = [
     id: "lovegin",
     name: "LoveGin",
     spirit: "Gin",
-    notes: "Frutas vermelhas · Hibisco · Cítricos",
+    notes: "Frutas vermelhas · Hibisco",
+    emoji: "🍓",
     description:
-      "Gin infusionado em frutas vermelhas, tônica, limão, laranja e um xarope de hibisco feito na casa. Rubro, floral e viciante — o brinde que abre qualquer noite.",
-    accent: "flame",
+      "Gin, frutas vermelhas e um xarope de hibisco que é a nossa cara. Rosado, refrescante e perigosamente fácil de beber.",
+    accent: "berry",
     glass: "/images/lovegin-glass.jpg",
     poster: "/images/lovegin-poster.jpg",
   },
@@ -67,20 +68,22 @@ export const drinks: Drink[] = [
     name: "Tropicaipi",
     spirit: "Vodka",
     notes: "Manga · Maracujá · Hortelã",
+    emoji: "🥭",
     description:
-      "Vodka com suco tropical de manga, maracujá e limão, tônica e xarope de hortelã. O verão engarrafado — dourado, cítrico e sem freio.",
-    accent: "tropical",
+      "Vodka com suco tropical de manga e maracujá e um toque de hortelã. É o verão inteiro dentro do copo.",
+    accent: "sun",
     glass: "/images/tropicaipi-glass.jpg",
     poster: "/images/tropicaipi-poster.jpg",
   },
   {
     id: "caipi",
     name: "Caipi Du'Bigode",
-    spirit: "Cachaça artesanal",
+    spirit: "Cachaça",
     notes: "Abacaxi · Limão · Manjericão",
+    emoji: "🍍",
     description:
-      "Nossa releitura da caipirinha: cachaça artesanal, abacaxi, limão e xarope de manjericão. A raiz brasileira em roupa de alfaiataria.",
-    accent: "tropical",
+      "A caipirinha turbinada: cachaça, abacaxi, limão e manjericão. Brasil no capricho, do jeitinho que a gente ama.",
+    accent: "lime",
     glass: "/images/caipi-glass.jpg",
     poster: "/images/caipi-poster.jpg",
   },
@@ -89,9 +92,10 @@ export const drinks: Drink[] = [
     name: "Mate Du'Bigode",
     spirit: "Rum",
     notes: "Mate · Maracujá · Gengibre",
+    emoji: "🧉",
     description:
-      "Rum, mate, maracujá, limão e xarope de gengibre. Aquele gole de praia carioca com pegada — âmbar, herbal e refrescante.",
-    accent: "gold",
+      "Rum com mate, maracujá e gengibre. Aquele gole gelado de praia carioca, com uma pegada que surpreende.",
+    accent: "tangerine",
     glass: "/images/mate-glass.jpg",
     poster: "/images/mate-poster.jpg",
   },
@@ -99,68 +103,62 @@ export const drinks: Drink[] = [
 
 export type Service = {
   id: string;
-  index: string;
+  emoji: string;
   title: string;
   summary: string;
-  includes: string[];
+  color: string; // token de cor tailwind pro card
 };
 
 export const services: Service[] = [
   {
     id: "casamentos",
-    index: "01",
+    emoji: "💍",
     title: "Casamentos",
-    summary:
-      "Um bar autoral que combina com a estética do seu grande dia. Drinks de assinatura com os nomes de vocês, do welcome drink à pista.",
-    includes: ["Drinks personalizados", "Cristaleria premium", "Bar cenográfico"],
+    summary: "O bar do “sim” com um drink que leva o nome de vocês. Ninguém esquece.",
+    color: "sky",
   },
   {
     id: "corporativo",
-    index: "02",
-    title: "Eventos Corporativos",
-    summary:
-      "Lançamentos, confraternizações e ativações de marca com a experiência que a sua empresa quer transmitir. Branding no copo.",
-    includes: ["Drinks com sua marca", "Estrutura para escala", "Nota fiscal & contrato"],
+    emoji: "🏢",
+    title: "Eventos da firma",
+    summary: "Confraternização, lançamento ou happy hour com a sua marca no copo.",
+    color: "lime",
   },
   {
     id: "aniversarios",
-    index: "03",
+    emoji: "🎉",
     title: "Aniversários",
-    summary:
-      "Da intimista à festa que vira madrugada. Um bar completo que transforma a sua data em memória coletiva.",
-    includes: ["Cardápio sob medida", "Bartenders show", "Opções sem álcool"],
+    summary: "Da reunião dos amigos à festa que vira o dia. A gente cuida da bebida.",
+    color: "tangerine",
   },
   {
     id: "formaturas",
-    index: "04",
+    emoji: "🎓",
     title: "Formaturas",
-    summary:
-      "A celebração de anos de dedicação merece um brinde à altura. Operação para grande público sem perder o requinte.",
-    includes: ["Alto volume", "Fila que anda rápido", "Energia de festival"],
+    summary: "Fila que anda rápido, drink gelado e energia de festival pra fechar o ciclo.",
+    color: "grape",
   },
   {
     id: "open-bar",
-    index: "05",
-    title: "Open Bar Autoral",
-    summary:
-      "Nosso serviço completo, chave na mão: curadoria de drinks, equipe, estrutura e insumos. Você recebe — a gente cuida do resto.",
-    includes: ["Curadoria completa", "Equipe uniformizada", "Logística total"],
+    emoji: "🍹",
+    title: "Open bar completo",
+    summary: "Chave na mão: drinks, equipe e estrutura. Você curte, a gente faz o resto.",
+    color: "sun",
   },
   {
     id: "festivais",
-    index: "06",
-    title: "Festivais & Marcas",
-    summary:
-      "Ativações e barras para festivais e experiências de marca. Nossos coquetéis engarrafados prontos para escalar o consumo.",
-    includes: ["Coquetéis engarrafados", "Operação high-volume", "Visual instagramável"],
+    emoji: "🎪",
+    title: "Festivais & marcas",
+    summary: "Ativações e barras que giram muito copo — e rendem story o tempo todo.",
+    color: "berry",
   },
 ];
 
 export const stats = [
-  { value: 620, suffix: "+", label: "Eventos realizados" },
+  { value: 620, suffix: "+", label: "Festas animadas" },
   { value: 180, suffix: "mil", label: "Drinks servidos" },
   { value: 6, suffix: " anos", label: "De estrada e bigode" },
-  { value: 4.9, suffix: "★", label: "Média de avaliação", decimals: 1 },
+  { value: 4.9, suffix: "★", label: "Nota da galera", decimals: 1 },
 ] as const;
 
 export type Testimonial = {
@@ -180,9 +178,9 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Contratamos para o lançamento e superou qualquer expectativa de ‘open bar de evento corporativo’. Elegante, pontual e com uma equipe que veste a camisa.",
+      "Contratamos pro lançamento e a galera não parou de elogiar o bar. Equipe animada, pontual e que abraça a festa. Virou nosso fornecedor oficial.",
     author: "Camila Rezende",
-    role: "Head de Marketing · Grupo Norvel",
+    role: "Marketing · Grupo Norvel",
     rating: 5,
   },
   {
@@ -203,23 +201,19 @@ export const testimonials: Testimonial[] = [
 
 export const faqs = [
   {
-    q: "Como funciona a contratação do open bar?",
-    a: "Você solicita um orçamento com data, local e número de convidados. Montamos uma proposta com curadoria de drinks, equipe e estrutura. Após o aceite e a assinatura do contrato, garantimos a data com um sinal.",
+    q: "Como faço pra contratar?",
+    a: "Manda um oi no orçamento ou no WhatsApp com a data, o local e quantas pessoas. A gente monta a proposta rapidinho e fecha tudo com contrato.",
   },
   {
-    q: "Vocês atendem em qual região?",
-    a: "Somos baseados no Rio de Janeiro e atendemos toda a Grande Rio. Para eventos em outras cidades e estados, avaliamos logística sob demanda — é só nos contar no orçamento.",
+    q: "Atendem em qual região?",
+    a: "Somos do Rio e rodamos toda a Grande Rio. Evento em outra cidade? Conta pra gente que a gente dá um jeito.",
   },
   {
-    q: "Dá para criar um drink exclusivo para o meu evento?",
-    a: "Sim, e é a nossa parte favorita. Criamos coquetéis de assinatura com o nome, a cor e a história do seu evento ou da sua marca, incluindo versões sem álcool.",
+    q: "Dá pra criar um drink só pro meu evento?",
+    a: "Dá sim, e é a nossa parte favorita! Criamos um drink com o nome e a cara da sua festa — com versão sem álcool também.",
   },
   {
-    q: "Qual o número mínimo de convidados?",
-    a: "Trabalhamos com celebrações intimistas a festivais de milhares de pessoas. Montamos a estrutura certa para cada porte — sem perder o requinte.",
-  },
-  {
-    q: "Vocês emitem nota fiscal e contrato?",
-    a: "Sempre. Todo evento é formalizado com contrato e nota fiscal, com transparência total sobre o que está incluso.",
+    q: "Tem opção sem álcool?",
+    a: "Sempre! A galera que não bebe também merece brindar com um drink caprichado.",
   },
 ];
