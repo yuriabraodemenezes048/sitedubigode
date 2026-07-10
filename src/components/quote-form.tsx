@@ -71,7 +71,7 @@ export function QuoteForm() {
           href={whatsappUrl("Acabei de solicitar um orçamento pelo site!")}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-8 py-4 text-sm font-semibold text-paper transition-colors hover:bg-flame"
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-flame px-8 py-4 text-sm font-semibold text-paper transition-colors hover:bg-olive"
         >
           Adiantar pelo WhatsApp
         </a>
@@ -101,7 +101,7 @@ export function QuoteForm() {
               className={cn(
                 "rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300",
                 eventType === t
-                  ? "border-ink bg-ink text-paper"
+                  ? "border-flame bg-flame text-paper"
                   : "border-ink/15 text-graphite/80 hover:border-ink/40",
               )}
             >
@@ -128,7 +128,7 @@ export function QuoteForm() {
               className={cn(
                 "rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300",
                 guests === g
-                  ? "border-ink bg-ink text-paper"
+                  ? "border-flame bg-flame text-paper"
                   : "border-ink/15 text-graphite/80 hover:border-ink/40",
               )}
             >
@@ -230,7 +230,7 @@ export function QuoteForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-7 inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-ink px-8 text-[0.95rem] font-semibold text-paper transition-all duration-500 ease-out-expo hover:bg-flame disabled:opacity-70 sm:w-auto"
+        className="mt-7 inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-flame px-8 text-[0.95rem] font-semibold text-paper transition-all duration-500 ease-out-expo hover:bg-olive disabled:opacity-70 sm:w-auto"
       >
         <AnimatePresence mode="wait" initial={false}>
           {status === "sending" ? (

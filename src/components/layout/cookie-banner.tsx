@@ -70,7 +70,7 @@ export function CookieBanner() {
               </button>
               <button
                 onClick={() => decide("all")}
-                className="h-10 flex-1 rounded-full bg-ink px-5 text-sm font-semibold text-paper transition-colors hover:bg-flame sm:flex-none"
+                className="h-10 flex-1 rounded-full bg-flame px-5 text-sm font-semibold text-paper transition-colors hover:bg-olive sm:flex-none"
               >
                 Aceitar tudo
               </button>

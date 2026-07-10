@@ -48,7 +48,7 @@ export function Testimonials() {
                   “{t.quote}”
                 </blockquote>
                 <figcaption className="mt-8 flex items-center gap-4 border-t border-ink/10 pt-6">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-ink font-display text-sm font-bold text-paper">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-flame font-display text-sm font-bold text-paper">
                     {t.author.charAt(0)}
                   </span>
                   <span>

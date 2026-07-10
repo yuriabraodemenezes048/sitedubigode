@@ -14,19 +14,24 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Base neutra — muito espaço em branco quente
-        sand: "#E9E1D4",
-        cream: "#F5F1EA",
-        paper: "#FBF9F5",
-        ink: "#111110",
-        graphite: "#26251F",
-        stone: "#8C877B",
-        // Acentos da marca (extraídos dos rótulos reais)
-        flame: "#C1352B", // LoveGin
-        tropical: "#15693B", // Tropicaipi / Caipi
-        ocean: "#2B6E8F",
-        sunset: "#E27D33",
-        gold: "#C4A24C",
+        // Base clara e natural — off-white, creme, areia (luz de fim de tarde)
+        paper: "#FEFCF8", // marfim / branco quente
+        cream: "#F6F0E4", // creme
+        sand: "#EADFC9", // areia
+        clay: "#E4D6BF", // areia mais quente
+        // "ink" agora é um espresso quente (texto), não preto puro
+        ink: "#2E2A22",
+        graphite: "#544C3E", // texto secundário quente
+        stone: "#9C917E", // taupe suave
+        // Acentos naturais (pôr do sol / vegetação / madeira)
+        flame: "#BC5B33", // terracota / laranja queimado (acento principal)
+        terracotta: "#B5623A",
+        tropical: "#5F7452", // verde sálvia / oliva
+        olive: "#47543B", // verde oliva profundo
+        sage: "#8FA07F", // verde sálvia claro
+        ocean: "#6E8B7E", // verde-água suave (sem azul vibrante)
+        sunset: "#C87D42", // laranja queimado quente
+        gold: "#BFA063", // dourado fosco
       },
       fontFamily: {
         display: ["var(--font-archivo)", "system-ui", "sans-serif"],

@@ -27,24 +27,33 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink text-paper grain"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-cream text-ink grain"
       aria-label="Introdução"
     >
-      {/* Fundo. No desktop: brilhos animados com blur (GPU sobra).
-          No mobile: gradiente estático leve — sem filtro blur, sem animação,
-          para não travar o scroll. */}
+      {/* Base de luz de fim de tarde — sempre presente, tons quentes */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, #FBF3E4 0%, #F6EEDD 45%, #F1E4CE 100%)",
+        }}
+      />
+
+      {/* Brilhos de sol. Desktop: animados com blur (GPU sobra).
+          Mobile: gradiente estático leve — sem filtro, para não travar o scroll. */}
       {isDesktop ? (
         <motion.div style={{ scale: scaleBg }} className="absolute inset-0">
-          <div className="absolute -right-[10%] top-[-20%] h-[70vh] w-[70vh] rounded-full bg-flame/25 blur-[120px]" />
-          <div className="absolute bottom-[-20%] left-[-10%] h-[60vh] w-[60vh] rounded-full bg-tropical/20 blur-[130px]" />
-          <div className="absolute right-[20%] top-[40%] h-[40vh] w-[40vh] rounded-full bg-gold/10 blur-[120px]" />
+          <div className="absolute -right-[8%] top-[-18%] h-[70vh] w-[70vh] rounded-full bg-sunset/25 blur-[120px]" />
+          <div className="absolute bottom-[-20%] left-[-10%] h-[60vh] w-[60vh] rounded-full bg-tropical/18 blur-[130px]" />
+          <div className="absolute right-[24%] top-[38%] h-[42vh] w-[42vh] rounded-full bg-gold/25 blur-[120px]" />
         </motion.div>
       ) : (
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(120% 80% at 85% 0%, rgba(193,53,43,0.30), transparent 60%), radial-gradient(120% 70% at 0% 100%, rgba(21,105,59,0.22), transparent 55%)",
+              "radial-gradient(120% 80% at 85% 0%, rgba(200,125,66,0.22), transparent 60%), radial-gradient(120% 70% at 0% 100%, rgba(95,116,82,0.16), transparent 55%)",
           }}
         />
       )}
@@ -52,7 +61,7 @@ export function Hero() {
       {/* Pôster flutuante principal (desktop) */}
       <motion.div
         style={{ y: yPoster, opacity }}
-        className="pointer-events-none absolute right-[5%] top-1/2 hidden aspect-[9/16] w-[19rem] -translate-y-1/2 overflow-hidden rounded-[1.4rem] shadow-[0_50px_100px_-30px_rgba(0,0,0,0.85)] ring-1 ring-paper/10 lg:block xl:w-[22rem]"
+        className="pointer-events-none absolute right-[5%] top-1/2 hidden aspect-[9/16] w-[19rem] -translate-y-1/2 overflow-hidden rounded-[1.4rem] shadow-[0_50px_100px_-30px_rgba(71,63,44,0.5)] ring-1 ring-ink/5 lg:block xl:w-[22rem]"
       >
         <Image
           src="/images/lovegin-poster.jpg"
@@ -67,7 +76,7 @@ export function Hero() {
       {/* Glass menor sobreposto (desktop) */}
       <motion.div
         style={{ y: yGlass, opacity }}
-        className="pointer-events-none absolute right-[27%] top-[56%] hidden aspect-[9/13] w-44 -rotate-3 overflow-hidden rounded-[1.1rem] shadow-[0_40px_70px_-24px_rgba(0,0,0,0.9)] ring-1 ring-paper/15 xl:block"
+        className="pointer-events-none absolute right-[27%] top-[56%] hidden aspect-[9/13] w-44 -rotate-3 overflow-hidden rounded-[1.1rem] shadow-[0_40px_70px_-24px_rgba(71,63,44,0.55)] ring-1 ring-ink/10 xl:block"
       >
         <Image
           src="/images/mate-glass.jpg"
@@ -87,7 +96,7 @@ export function Hero() {
           <defs>
             <path id="circle" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" />
           </defs>
-          <text className="fill-paper/70 text-[9.5px] font-semibold uppercase tracking-[0.28em]">
+          <text className="fill-ink/55 text-[9.5px] font-semibold uppercase tracking-[0.28em]">
             <textPath href="#circle">
               Feito na hora · Servido com bigode ·
             </textPath>
@@ -102,7 +111,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
-          className="kicker text-paper/60 before:bg-paper/40"
+          className="kicker text-graphite before:bg-graphite/40"
         >
           Open bar autoral · Eventos premium · desde 2019
         </motion.p>
@@ -126,7 +135,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.5 }}
-          className="mt-8 max-w-md text-base leading-relaxed text-paper/70 sm:text-lg"
+          className="mt-8 max-w-md text-base leading-relaxed text-graphite sm:text-lg"
         >
           Bartenders, coquetéis de assinatura e um bar cenográfico que vira o
           assunto do seu casamento, evento corporativo ou celebração. Do
@@ -141,7 +150,7 @@ export function Hero() {
         >
           <Link
             href="/orcamento"
-            className="group inline-flex h-14 items-center justify-center gap-2 rounded-full bg-paper px-8 text-[0.95rem] font-semibold text-ink transition-all duration-500 ease-out-expo hover:-translate-y-0.5 hover:bg-flame hover:text-paper"
+            className="group inline-flex h-14 items-center justify-center gap-2 rounded-full bg-flame px-8 text-[0.95rem] font-semibold text-paper transition-all duration-500 ease-out-expo hover:-translate-y-0.5 hover:bg-olive"
           >
             Solicitar orçamento
             <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-out-expo group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -150,7 +159,7 @@ export function Hero() {
             href={whatsappUrl("Olá! Quero conhecer o open bar da du Bigode.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-paper/25 px-8 text-[0.95rem] font-semibold text-paper transition-colors hover:bg-paper hover:text-ink"
+            className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-ink/25 px-8 text-[0.95rem] font-semibold text-ink transition-colors hover:bg-ink hover:text-paper"
           >
             Conhecer a marca
           </a>
@@ -164,7 +173,7 @@ export function Hero() {
           transition={{ duration: 0.9, ease: EASE, delay: 0.7 }}
           className="relative mt-10 lg:hidden"
         >
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl ring-1 ring-paper/12 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.9)]">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl ring-1 ring-ink/10 shadow-[0_30px_60px_-30px_rgba(71,63,44,0.55)]">
             <Image
               src="/images/nossos-drinks.jpg"
               alt="Coquetéis autorais Drinks du Bigode em um brinde"
@@ -173,9 +182,9 @@ export function Hero() {
               sizes="100vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent" />
           </div>
-          <div className="absolute -bottom-3 left-4 flex items-center gap-2 rounded-full bg-paper px-4 py-2 shadow-lg">
+          <div className="absolute -bottom-3 left-4 flex items-center gap-2 rounded-full bg-paper px-4 py-2 shadow-lg ring-1 ring-ink/5">
             <span className="text-flame">✦</span>
             <span className="font-display text-xs font-bold tracking-tight text-ink">
               4 drinks de assinatura
@@ -190,13 +199,13 @@ export function Hero() {
         className="relative z-10 flex items-center justify-between gap-4 pb-7"
       >
         <div className="shell flex w-full items-end justify-between">
-          <div className="flex items-center gap-3 text-paper/50">
+          <div className="flex items-center gap-3 text-graphite">
             <ArrowDown className="h-4 w-4 animate-bounce" />
             <span className="text-xs font-medium uppercase tracking-[0.2em]">
               Role para descobrir
             </span>
           </div>
-          <div className="hidden items-center gap-2 text-paper/40 sm:flex">
+          <div className="hidden items-center gap-2 text-stone sm:flex">
             <span className="text-xs font-medium uppercase tracking-[0.2em]">
               Rio de Janeiro · Brasil
             </span>

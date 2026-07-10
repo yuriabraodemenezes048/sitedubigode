@@ -95,7 +95,7 @@ export function Header() {
               <button
                 onClick={() => setOpen(true)}
                 aria-label="Abrir menu"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:bg-ink hover:text-paper lg:hidden"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:bg-flame hover:text-paper lg:hidden"
               >
                 <Menu className="h-5 w-5" strokeWidth={2} />
               </button>
@@ -108,7 +108,7 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[60] bg-ink text-paper grain lg:hidden"
+            className="fixed inset-0 z-[60] bg-olive text-cream grain lg:hidden"
             initial={{ clipPath: "circle(0% at 100% 0%)" }}
             animate={{ clipPath: "circle(150% at 100% 0%)" }}
             exit={{ clipPath: "circle(0% at 100% 0%)" }}
@@ -116,13 +116,13 @@ export function Header() {
           >
             <div className="flex h-full flex-col px-6 pb-10 pt-5">
               <div className="flex items-center justify-between">
-                <span className="font-serif text-lg italic text-paper/70">
+                <span className="font-serif text-lg italic text-cream/70">
                   du Bigode
                 </span>
                 <button
                   onClick={() => setOpen(false)}
                   aria-label="Fechar menu"
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-paper/20"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/25"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -139,7 +139,7 @@ export function Header() {
                     <Link
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className="block border-b border-paper/10 py-4 font-display text-4xl font-extrabold tracking-tightest text-paper"
+                      className="block border-b border-cream/15 py-4 font-display text-4xl font-extrabold tracking-tightest text-cream"
                     >
                       {item.label}
                     </Link>
@@ -162,7 +162,7 @@ export function Header() {
                   external
                   variant="outline"
                   size="lg"
-                  className="border-paper/30 text-paper hover:bg-paper hover:text-ink"
+                  className="border-cream/30 text-cream hover:bg-cream hover:text-olive"
                 >
                   Chamar no WhatsApp
                 </Button>

@@ -20,12 +20,12 @@ export function DrinksShowcase() {
   const drink = drinks[active];
 
   return (
-    <section id="drinks" className="relative overflow-hidden bg-ink py-24 text-paper grain sm:py-32">
+    <section id="drinks" className="relative overflow-hidden bg-sand py-24 text-ink grain sm:py-32">
       <div className="shell relative z-10">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div>
             <Reveal>
-              <p className="kicker text-paper/50 before:bg-paper/40">
+              <p className="kicker text-graphite before:bg-graphite/40">
                 Coquetéis de assinatura
               </p>
             </Reveal>
@@ -40,7 +40,7 @@ export function DrinksShowcase() {
             </Reveal>
           </div>
           <Reveal delay={0.1}>
-            <p className="max-w-xs text-sm leading-relaxed text-paper/60">
+            <p className="max-w-xs text-sm leading-relaxed text-graphite">
               Quatro assinaturas que definem a casa — e que podem ganhar o nome
               e a cara do seu evento.
             </p>
@@ -58,24 +58,24 @@ export function DrinksShowcase() {
                 onFocus={() => setActive(i)}
                 onClick={() => setActive(i)}
                 className={cn(
-                  "group grid grid-cols-[auto_1fr_auto] items-center gap-6 border-t border-paper/10 py-6 text-left transition-colors last:border-b",
+                  "group grid grid-cols-[auto_1fr_auto] items-center gap-6 border-t border-ink/12 py-6 text-left transition-colors last:border-b",
                   active === i ? "opacity-100" : "opacity-45 hover:opacity-80",
                 )}
                 aria-pressed={active === i}
               >
-                <span className="font-mono text-xs text-paper/40">
+                <span className="font-mono text-xs text-stone">
                   0{i + 1}
                 </span>
                 <span>
                   <span
                     className={cn(
                       "block font-display text-3xl font-extrabold tracking-tightest transition-colors xl:text-4xl",
-                      active === i ? accentText[d.accent] : "text-paper",
+                      active === i ? accentText[d.accent] : "text-ink",
                     )}
                   >
                     {d.name}
                   </span>
-                  <span className="mt-1 block text-xs uppercase tracking-[0.18em] text-paper/50">
+                  <span className="mt-1 block text-xs uppercase tracking-[0.18em] text-stone">
                     {d.spirit} · {d.notes}
                   </span>
                 </span>
@@ -92,7 +92,7 @@ export function DrinksShowcase() {
 
           {/* Palco visual */}
           <div className="relative">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-graphite ring-1 ring-paper/10">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-clay ring-1 ring-ink/10">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={drink.id}
@@ -119,7 +119,7 @@ export function DrinksShowcase() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.5, ease: EASE }}
-                className="mt-6 max-w-md text-[0.95rem] leading-relaxed text-paper/70"
+                className="mt-6 max-w-md text-[0.95rem] leading-relaxed text-graphite"
               >
                 {drink.description}
               </motion.p>
@@ -134,7 +134,7 @@ export function DrinksShowcase() {
               key={d.id}
               className="w-[78vw] shrink-0 snap-center sm:w-[60vw]"
             >
-              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl ring-1 ring-paper/10">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl ring-1 ring-ink/10">
                 <Image
                   src={d.poster}
                   alt={`${d.name} — ${d.notes}`}
@@ -151,10 +151,10 @@ export function DrinksShowcase() {
               >
                 {d.name}
               </h3>
-              <p className="mt-1 text-xs uppercase tracking-[0.16em] text-paper/50">
+              <p className="mt-1 text-xs uppercase tracking-[0.16em] text-stone">
                 {d.spirit} · {d.notes}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-paper/70">
+              <p className="mt-3 text-sm leading-relaxed text-graphite">
                 {d.description}
               </p>
             </article>

@@ -37,26 +37,26 @@ export function Services() {
         <Stagger className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
             <StaggerItem key={s.id}>
-              <article className="group relative flex h-full flex-col bg-paper p-8 transition-colors duration-500 hover:bg-ink hover:text-paper sm:p-9">
+              <article className="group relative flex h-full flex-col bg-paper p-8 transition-colors duration-500 hover:bg-olive hover:text-cream sm:p-9">
                 <div className="flex items-start justify-between">
-                  <span className="font-mono text-xs text-stone transition-colors group-hover:text-paper/50">
+                  <span className="font-mono text-xs text-stone transition-colors group-hover:text-cream/60">
                     {s.index}
                   </span>
-                  <ArrowUpRight className="h-5 w-5 text-stone opacity-0 transition-all duration-500 ease-out-expo group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-paper group-hover:opacity-100" />
+                  <ArrowUpRight className="h-5 w-5 text-stone opacity-0 transition-all duration-500 ease-out-expo group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cream group-hover:opacity-100" />
                 </div>
 
-                <h3 className="mt-10 font-display text-2xl font-extrabold tracking-tightest text-ink transition-colors group-hover:text-paper sm:text-[1.7rem]">
+                <h3 className="mt-10 font-display text-2xl font-extrabold tracking-tightest text-ink transition-colors group-hover:text-cream sm:text-[1.7rem]">
                   {s.title}
                 </h3>
-                <p className="mt-3 flex-1 text-[0.92rem] leading-relaxed text-graphite/75 transition-colors group-hover:text-paper/70">
+                <p className="mt-3 flex-1 text-[0.92rem] leading-relaxed text-graphite/75 transition-colors group-hover:text-cream/80">
                   {s.summary}
                 </p>
 
-                <ul className="mt-6 space-y-2 border-t border-ink/10 pt-5 transition-colors group-hover:border-paper/15">
+                <ul className="mt-6 space-y-2 border-t border-ink/10 pt-5 transition-colors group-hover:border-cream/20">
                   {s.includes.map((inc) => (
                     <li
                       key={inc}
-                      className="flex items-center gap-2.5 text-[0.82rem] text-graphite/80 transition-colors group-hover:text-paper/80"
+                      className="flex items-center gap-2.5 text-[0.82rem] text-graphite/80 transition-colors group-hover:text-cream/85"
                     >
                       <Check className="h-3.5 w-3.5 shrink-0 text-flame" strokeWidth={3} />
                       {inc}

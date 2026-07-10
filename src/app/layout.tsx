@@ -23,7 +23,7 @@ const fraunces = Fraunces({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#111110",
+  themeColor: "#F6F0E4",
   width: "device-width",
   initialScale: 1,
   colorScheme: "light",

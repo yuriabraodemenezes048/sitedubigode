@@ -51,7 +51,7 @@ export function Faq() {
                     <span
                       className={cn(
                         "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink/20 transition-all duration-500 ease-out-expo",
-                        isOpen && "rotate-45 bg-ink text-paper",
+                        isOpen && "rotate-45 bg-flame text-paper",
                       )}
                     >
                       <Plus className="h-4 w-4" strokeWidth={2.5} />
