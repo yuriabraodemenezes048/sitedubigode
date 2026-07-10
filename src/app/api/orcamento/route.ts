@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { quoteSchema } from "@/lib/schema";
+import { sendLeadEmail } from "@/lib/email";
 
 export const runtime = "nodejs";
 
@@ -59,17 +60,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
-  // TODO integração: validar token do reCAPTCHA/Turnstile aqui, e então
-  // encaminhar o lead (e-mail transacional, CRM ou planilha). Mantido como
-  // estrutura pronta para não expor segredos no frontend.
+  // Estrutura pronta para reCAPTCHA/Turnstile: validar o token aqui antes de
+  // seguir. Encaminha o lead por e-mail transacional (Resend).
   const lead = parsed.data;
-  console.info("[orcamento] novo lead", {
-    name: lead.name,
-    eventType: lead.eventType,
-    guests: lead.guests,
-    city: lead.city,
-    date: lead.date,
-  });
+  const result = await sendLeadEmail(lead);
+
+  if (!result.ok) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "Não conseguimos enviar agora. Tente novamente ou fale no WhatsApp.",
+      },
+      { status: 502 },
+    );
+  }
 
   return NextResponse.json({ ok: true });
 }
