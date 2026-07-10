@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Instagram, Play } from "lucide-react";
+import { Instagram } from "lucide-react";
 import { site, whatsappUrl } from "@/lib/site";
 
 const fade = {
@@ -88,11 +88,6 @@ export function Hero() {
               sizes="(max-width: 768px) 100vw, 900px"
               className="object-cover"
             />
-            <div className="absolute inset-0 grid place-items-center">
-              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-paper/90 text-ink shadow-lg sm:h-20 sm:w-20">
-                <Play className="h-7 w-7 translate-x-0.5 fill-ink sm:h-9 sm:w-9" />
-              </span>
-            </div>
           </div>
           {/* Selo giratório divertido */}
           <span className="absolute -right-3 -top-5 hidden rotate-6 rounded-full bg-lime px-4 py-2 font-display text-sm font-bold text-paper shadow-lg sm:block">
