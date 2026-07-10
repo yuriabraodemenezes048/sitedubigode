@@ -7,9 +7,11 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { RevealText } from "@/components/ui/reveal";
 import { whatsappUrl } from "@/lib/site";
+import { useIsDesktop } from "@/lib/use-media-query";
 
 export function FinalCta() {
   const ref = useRef<HTMLElement>(null);
+  const isDesktop = useIsDesktop();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -22,7 +24,10 @@ export function FinalCta() {
       className="relative flex min-h-[92svh] items-center overflow-hidden bg-ink text-paper grain"
       aria-label="Solicitar orçamento"
     >
-      <motion.div style={{ y }} className="absolute inset-[-12%]">
+      <motion.div
+        style={isDesktop ? { y } : undefined}
+        className="absolute inset-[-12%]"
+      >
         <Image
           src="/images/tropicaipi-poster.jpg"
           alt=""

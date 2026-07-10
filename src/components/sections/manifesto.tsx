@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Reveal, RevealText } from "@/components/ui/reveal";
+import { useIsDesktop } from "@/lib/use-media-query";
 
 const timeline = [
   { year: "2019", text: "Nasce a du Bigode, servindo caipirinha autoral em festas de amigos." },
@@ -14,6 +15,7 @@ const timeline = [
 
 export function Manifesto() {
   const ref = useRef<HTMLDivElement>(null);
+  const isDesktop = useIsDesktop();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -79,7 +81,10 @@ export function Manifesto() {
           <div ref={ref} className="relative">
             <div className="sticky top-28 overflow-hidden rounded-3xl">
               <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-sand ring-1 ring-ink/5">
-                <motion.div style={{ y }} className="absolute inset-[-8%]">
+                <motion.div
+                  style={isDesktop ? { y } : undefined}
+                  className="absolute inset-[-8%]"
+                >
                   <Image
                     src="/images/caipi-glass.jpg"
                     alt="Caipi Du'Bigode — cachaça artesanal com abacaxi e manjericão"

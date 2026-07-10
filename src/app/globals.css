@@ -99,6 +99,21 @@
     -webkit-backdrop-filter: blur(18px) saturate(130%);
   }
 
+  /* Blur é caro em GPU de celular: reduz a intensidade e compensa com um
+     fundo um pouco mais opaco para manter a legibilidade. */
+  @media (max-width: 1023px) {
+    .glass {
+      background: rgba(251, 249, 245, 0.82);
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+    }
+    .glass-dark {
+      background: rgba(17, 17, 16, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+  }
+
   /* Link sublinhado animado */
   .link-underline {
     @apply relative inline-block;

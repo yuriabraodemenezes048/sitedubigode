@@ -6,11 +6,13 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, ArrowDown } from "lucide-react";
 import Link from "next/link";
 import { whatsappUrl } from "@/lib/site";
+import { useIsDesktop } from "@/lib/use-media-query";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const isDesktop = useIsDesktop();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -28,16 +30,24 @@ export function Hero() {
       className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink text-paper grain"
       aria-label="Introdução"
     >
-      {/* Camada de fundo — colagem com overlay cinematográfico.
-          Para trocar por vídeo: substitua este bloco por um <video> com
-          poster e as mesmas classes de object-cover. */}
-      {/* Palco escuro com brilho ambiente da marca. Para trocar por vídeo:
-          substitua este bloco por um <video> full-bleed com object-cover. */}
-      <motion.div style={{ scale: scaleBg }} className="absolute inset-0">
-        <div className="absolute -right-[10%] top-[-20%] h-[70vh] w-[70vh] rounded-full bg-flame/25 blur-[120px]" />
-        <div className="absolute bottom-[-20%] left-[-10%] h-[60vh] w-[60vh] rounded-full bg-tropical/20 blur-[130px]" />
-        <div className="absolute right-[20%] top-[40%] h-[40vh] w-[40vh] rounded-full bg-gold/10 blur-[120px]" />
-      </motion.div>
+      {/* Fundo. No desktop: brilhos animados com blur (GPU sobra).
+          No mobile: gradiente estático leve — sem filtro blur, sem animação,
+          para não travar o scroll. */}
+      {isDesktop ? (
+        <motion.div style={{ scale: scaleBg }} className="absolute inset-0">
+          <div className="absolute -right-[10%] top-[-20%] h-[70vh] w-[70vh] rounded-full bg-flame/25 blur-[120px]" />
+          <div className="absolute bottom-[-20%] left-[-10%] h-[60vh] w-[60vh] rounded-full bg-tropical/20 blur-[130px]" />
+          <div className="absolute right-[20%] top-[40%] h-[40vh] w-[40vh] rounded-full bg-gold/10 blur-[120px]" />
+        </motion.div>
+      ) : (
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(120% 80% at 85% 0%, rgba(193,53,43,0.30), transparent 60%), radial-gradient(120% 70% at 0% 100%, rgba(21,105,59,0.22), transparent 55%)",
+          }}
+        />
+      )}
 
       {/* Pôster flutuante principal (desktop) */}
       <motion.div
@@ -87,7 +97,7 @@ export function Hero() {
       </motion.div>
 
       {/* Conteúdo */}
-      <div className="shell relative z-10 flex flex-1 flex-col justify-center pb-24 pt-32">
+      <div className="shell relative z-10 flex flex-1 flex-col justify-start pb-16 pt-28 lg:justify-center lg:pb-24 lg:pt-32">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -144,6 +154,33 @@ export function Hero() {
           >
             Conhecer a marca
           </a>
+        </motion.div>
+
+        {/* Vitrine visual do herói — só mobile (desktop tem os pôsteres
+            flutuantes). Imagem estática: zero custo de scroll. */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: EASE, delay: 0.7 }}
+          className="relative mt-10 lg:hidden"
+        >
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl ring-1 ring-paper/12 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.9)]">
+            <Image
+              src="/images/nossos-drinks.jpg"
+              alt="Coquetéis autorais Drinks du Bigode em um brinde"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
+          </div>
+          <div className="absolute -bottom-3 left-4 flex items-center gap-2 rounded-full bg-paper px-4 py-2 shadow-lg">
+            <span className="text-flame">✦</span>
+            <span className="font-display text-xs font-bold tracking-tight text-ink">
+              4 drinks de assinatura
+            </span>
+          </div>
         </motion.div>
       </div>
 
