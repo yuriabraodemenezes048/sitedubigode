@@ -29,8 +29,14 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
+// Em produção usa o domínio real; na Vercel (antes do domínio custom) usa a
+// URL do deploy; localmente cai no site.url. Garante OG/canonical corretos.
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : site.url);
+
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(baseUrl),
   title: {
     default: `${site.name} — Open bar autoral para eventos inesquecíveis`,
     template: `%s · ${site.name}`,
