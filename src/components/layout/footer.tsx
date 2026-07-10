@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, ArrowUpRight } from "lucide-react";
+import { Instagram, Mail, ArrowUpRight } from "lucide-react";
 import { nav, site, whatsappUrl } from "@/lib/site";
 
 const legal = [
@@ -8,14 +8,6 @@ const legal = [
   { label: "Termos de Uso", href: "/termos-de-uso" },
   { label: "Perguntas frequentes", href: "/#faq" },
 ];
-
-function TikTokIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
-      <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-1.77-2.45V9.8a5.66 5.66 0 1 0 4.86 5.6V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.28 4.28 0 0 1-3.24-1.48Z" />
-    </svg>
-  );
-}
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -117,13 +109,11 @@ export function Footer() {
               <Instagram className="h-4 w-4" />
             </a>
             <a
-              href={site.contact.tiktok}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="TikTok"
+              href={`mailto:${site.contact.email}`}
+              aria-label="E-mail"
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-paper/20 transition-colors hover:bg-paper hover:text-ink"
             >
-              <TikTokIcon className="h-4 w-4" />
+              <Mail className="h-4 w-4" />
             </a>
             <span className="text-sm text-paper/50">{site.contact.instagramHandle}</span>
           </div>

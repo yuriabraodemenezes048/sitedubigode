@@ -198,7 +198,7 @@ export function Hero() {
           </div>
           <div className="hidden items-center gap-2 text-paper/40 sm:flex">
             <span className="text-xs font-medium uppercase tracking-[0.2em]">
-              São Paulo · Brasil
+              Rio de Janeiro · Brasil
             </span>
           </div>
         </div>

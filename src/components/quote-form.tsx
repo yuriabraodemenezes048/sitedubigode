@@ -171,7 +171,7 @@ export function QuoteForm() {
           <input
             {...register("city")}
             autoComplete="address-level2"
-            placeholder="São Paulo, SP"
+            placeholder="Rio de Janeiro, RJ"
             className={inputCls}
           />
         </Field>

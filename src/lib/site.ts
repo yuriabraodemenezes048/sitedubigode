@@ -13,17 +13,16 @@ export const site = {
   // Substitua pela URL de produção definitiva
   url: "https://drinksdubigode.com.br",
   locale: "pt-BR",
-  city: "São Paulo",
-  region: "SP",
+  city: "Rio de Janeiro",
+  region: "RJ",
   country: "BR",
   founded: "2019",
   contact: {
-    whatsapp: "5511999999999",
-    whatsappLabel: "(11) 99999-9999",
-    email: "contato@drinksdubigode.com.br",
+    whatsapp: "5521997032675",
+    whatsappLabel: "(21) 99703-2675",
+    email: "drinksdubigode@gmail.com",
     instagram: "https://instagram.com/drinksdubigode",
     instagramHandle: "@drinksdubigode",
-    tiktok: "https://tiktok.com/@drinksdubigode",
   },
 } as const;
 
@@ -209,7 +208,7 @@ export const faqs = [
   },
   {
     q: "Vocês atendem em qual região?",
-    a: "Somos baseados em São Paulo e atendemos toda a Grande SP. Para eventos em outras cidades e estados, avaliamos logística sob demanda — é só nos contar no orçamento.",
+    a: "Somos baseados no Rio de Janeiro e atendemos toda a Grande Rio. Para eventos em outras cidades e estados, avaliamos logística sob demanda — é só nos contar no orçamento.",
   },
   {
     q: "Dá para criar um drink exclusivo para o meu evento?",
